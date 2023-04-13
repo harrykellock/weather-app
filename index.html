@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forcast</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<ion-header class="ion-no-border" mode="ios">
+    <ion-toolbar>
+        
+        <ion-title>Weather Forcast </ion-title>
+       
+
+       </ion-header>
+      
+       
+    <ion-body>
+    <ion class="card">
+        <ion class="search">
+            <ion-input type="text" placeholder="Search for a city or country"
+            spellcheck="false"></ion-input>
+            <ion-button>FIND</ion-button>
+        </ion>
+        <ion class= "weather">
+            <ion-img src="images/rain.png" class="weather-icon"></ion-img>
+            <style>h1 {
+                text-align: center;
+              }
+              h2 {
+              text-align: center;
+              }</style>
+            <h1 class="temp">22°C</h1>
+            <style>
+               h1{ font-size: 45px;
+
+               }
+            </style>
+            <h2 class="city">New york</h2>
+            
+            <ion class="details"></ion>
+            <ion class="row">
+                <ion class="column"></ion>
+                
+                <ion>
+                    <p class="humidity">50%</p>
+                    <p>humidity</p>
+                    <style>p {
+                        text-align: right;
+                      }
+                      p{
+                      text-align: right;
+                      }</style>
+                </ion>
+                <ion class="column">
+                 
+                    <ion>
+                        <p class="wind">25km</p>
+                        <p>wind speed</p>
+                        <style>p {
+                            text-align: left;
+                           
+                          }
+                          p {
+                          text-align: left;
+                          
+           
+                          }</style>
+
+                    </ion>
+            </ion>
+        </ion>
+        <script>
+            const apikey = "84610785d85bf1ed819d47d9831f14b8";
+            const apiUrl= " https://api.openweathermap.org/data/2.5/weather?units=metric&=Glasgow";
+            const searchbox = document.querySelector("search input")
+            const searchbtn = document.querySelector("search button")
+
+
+           async function checkWeather(){
+              const response = await fetch(apiUrl + city + `&appid=${apikey}`);
+                var data = await response.json();
+
+                console.log(data);
+
+           }
+         
+
+         document.querySelector("city").innerHTML = data.name;
+         document.querySelector("temp").innerHTML = math.round(data.main.temp) + "°C";
+         document.querySelector("humidity").innerHTML = data.main.humidity + "%";
+         document.querySelector("wind").innerHTML = data.wind.speed + "km/h";
+
+         searchbtn.addEventListener("click", ()=>{
+         checkWeather(searchbox.value);
+         })
+
+         checkWeather();
+        </script>
+
+    </ion>
+
+    
+</ion-body>
+
